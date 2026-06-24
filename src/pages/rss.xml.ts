@@ -12,13 +12,13 @@ export async function GET(context: { site: URL }) {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description ?? '',
-      link: `${base}/daily/${post.slug}/`,
+      link: `${base}/daily/${post.id}/`,
     })),
     ...longForm.map(post => ({
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description ?? '',
-      link: `${base}/long-form/${post.slug}/`,
+      link: `${base}/long-form/${post.id}/`,
     })),
   ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
 
