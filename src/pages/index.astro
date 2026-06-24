@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL;
+
+const dailyPosts = (await getCollection('daily', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5);
+
+const longFormPosts = (await getCollection('long-form', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+---
+
+<BaseLayout>
+  <section class="home-section">
+    <div class="section-header">
+      <h2>Daily</h2>
+      <a href={`${base}/daily/`} class="section-header-link">All posts →</a>
+    </div>
+
+    {dailyPosts.length === 0 ? (
+      <p class="empty-state">No daily posts yet.</p>
+    ) : (
+      <ul class="post-list">
+        {dailyPosts.map(post => (
+          <li class="post-item">
+            <div class="post-item-date">{formatDate(post.data.date)}</div>
+            <h3 class="post-item-title">
+              <a href={`${base}/daily/${post.slug}/`}>{post.data.title}</a>
+            </h3>
+            {post.data.description && (
+              <p class="post-item-description">{post.data.description}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <section class="home-section">
+    <div class="section-header">
+      <h2>Long-form</h2>
+      <a href={`${base}/long-form/`} class="section-header-link">All essays →</a>
+    </div>
+
+    {longFormPosts.length === 0 ? (
+      <p class="empty-state">No long-form posts yet.</p>
+    ) : (
+      <ul class="post-list">
+        {longFormPosts.map(post => (
+          <li class="post-item">
+            <div class="post-item-date">{formatDate(post.data.date)}</div>
+            <h3 class="post-item-title">
+              <a href={`${base}/long-form/${post.slug}/`}>{post.data.title}</a>
+            </h3>
+            {post.data.description && (
+              <p class="post-item-description">{post.data.description}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>

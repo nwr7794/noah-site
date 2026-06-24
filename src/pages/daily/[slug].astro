@@ -1,0 +1,27 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('daily', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const base = import.meta.env.BASE_URL;
+---
+
+<PostLayout
+  title={post.data.title}
+  date={post.data.date}
+  description={post.data.description}
+  section="daily"
+  backHref={`${base}/daily/`}
+  backLabel="Daily"
+>
+  <Content />
+</PostLayout>
