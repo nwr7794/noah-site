@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node --check src/site.js && node --test"
+  },
+  "devDependencies": {}
+}

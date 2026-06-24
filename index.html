@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Noah's personal site featuring selected work, values, and contact information."
+    />
+    <title>Noah | Personal Site</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="logo" href="#top" aria-label="Noah home">Noah</a>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Designer • Builder • Problem Solver</p>
+        <h1 id="hero-title">Hi, I’m Noah. I build thoughtful digital experiences.</h1>
+        <p class="hero-copy">
+          I turn ideas into polished, accessible websites and products with a focus on clarity,
+          performance, and human-centered details.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">View work</a>
+          <a class="button secondary" href="mailto:hello@example.com">Start a conversation</a>
+        </div>
+      </section>
+
+      <section id="work" class="section" aria-labelledby="work-title">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-title">Recent projects</h2>
+        </div>
+        <div class="project-grid" data-project-list></div>
+      </section>
+
+      <section id="about" class="section split" aria-labelledby="about-title">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">Practical creativity for ambitious teams.</h2>
+        </div>
+        <p>
+          Noah partners with founders, creators, and organizations to shape brand moments,
+          product launches, and web experiences that feel confident from the first click.
+        </p>
+      </section>
+
+      <section id="contact" class="section contact-card" aria-labelledby="contact-title">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Have a project in mind?</h2>
+        <p>Send a note and let’s explore what we can make together.</p>
+        <a class="button primary" href="mailto:hello@example.com">hello@example.com</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span data-year></span> Noah. Built for the web.</p>
+    </footer>
+
+    <script type="module" src="src/site.js"></script>
+  </body>
+</html>
